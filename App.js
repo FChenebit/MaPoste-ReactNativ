@@ -1,19 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import MaPosteNavigation from './Navigation/MaPosteNavigation'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>MaPosteReact</Text>
-    </View>
+    <MaPosteNavigation/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
