@@ -1,7 +1,7 @@
-import React from 'react'
-import {createAppContainer } from 'react-navigation'
-import {createStackNavigator} from 'react-navigation-stack'
-import {createDrawerNavigator} from 'react-navigation-drawer'
+import * as React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import {createDrawerNavigator,  DrawerContentScrollView, DrawerItemList,DrawerItem} from '@react-navigation/drawer';
+import { ImageBackground } from "react-native";
 
 import SearchPost from '../Components/SearchPost'
 import ListPost from '../Components/ListPost'
@@ -9,47 +9,93 @@ import CheckAddress from '../Components/CheckAddress'
 import DetailAddress from '../Components/DetailAddress'
 import StampPrice from '../Components/StampPrice'
 
+import iconPostOffice from '../assets/iconPostOffice.png'
 
-const SearchStackNavigator = createStackNavigator({
-  SearchPost: {
-    screen: SearchPost,
-  },
-  ListPost: {
-    screen: ListPost
-  }
-},
-{
-  initialRouteName: 'SearchPost',
-})
 
-const AddressStackNavigator = createStackNavigator({
-  CheckAddress: {
-    screen: CheckAddress,
-  },
-  DetailAddress: {
-    screen: DetailAddress
-  }
-},
-{
-  initialRouteName: 'CheckAddress',
-})
+const SearchStackNavigator = createStackNavigator();
 
-const StampNavigator = createStackNavigator({
-  StampPrice: {
-    screen: StampPrice,
-  }
-},
-{
-  initialRouteName: 'StampPrice',
-})
+function SearchStack() {
+  return (
+    <SearchStackNavigator.Navigator headerMode='none'>
+      <SearchStackNavigator.Screen
+        name="Poste"
+        component={SearchPost}
+      />
+      <SearchStackNavigator.Screen
+        name="List"
+        component={ListPost}
+      />
+    </SearchStackNavigator.Navigator>
+  );
+}
 
-const AppNavigator = createDrawerNavigator({
-  SearchStackNavigator,
-  AddressStackNavigator,
-  StampNavigator,
-},
-{
-  initialRouteName:'SearchStackNavigator'
-})
+const AddressStackNavigator = createStackNavigator();
 
-export default createAppContainer(AppNavigator)
+function AddressStack() {
+  return (
+    <AddressStackNavigator.Navigator headerMode='none'>
+      <AddressStackNavigator.Screen 
+        name="Check"
+        component={CheckAddress}
+      />
+      <AddressStackNavigator.Screen 
+        name="Detail"
+        component={DetailAddress}
+      />
+    </AddressStackNavigator.Navigator>
+  )
+}
+
+const StampStackNavigator = createStackNavigator();
+
+function StampStack() {
+  return (    
+    <StampStackNavigator.Navigator headerMode='none'>
+      <StampStackNavigator.Screen
+        name="Stamp Price"
+        component={StampPrice}
+      />
+    </StampStackNavigator.Navigator>
+  )
+}
+
+function CustomDrawerContent(props) {
+  return (
+    <ImageBackground source={require('../assets/drawerBackground.png')} style={{ width:'100%', height:'100%'}}>
+    <DrawerContentScrollView {...props}>
+        <DrawerItemList {...props} />
+        <DrawerItem
+          label="Search"
+          icon={{iconPostOffice}}
+          onPress={() => props.navigation.navigate('Search')}      
+        />
+    </DrawerContentScrollView>
+    </ImageBackground>
+  );
+}
+
+
+const AppDrawerNavigator = createDrawerNavigator();
+
+function AppDrawer() {
+  return (
+  <AppDrawerNavigator.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}>
+      <AppDrawerNavigator.Screen 
+        name='Search' 
+        component={SearchStack}
+      />
+      <AppDrawerNavigator.Screen 
+        name='Address' 
+        component={AddressStack}
+      />
+      <AppDrawerNavigator.Screen 
+        name='Stamp' 
+        component={StampStack}
+      />
+    </AppDrawerNavigator.Navigator>
+  )
+}
+
+
+
+export default AppDrawer;

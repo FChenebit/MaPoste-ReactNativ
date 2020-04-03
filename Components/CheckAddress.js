@@ -5,7 +5,7 @@ import { StyleSheet, Button,View, Text} from 'react-native'
 class CheckAddress extends React.Component {
 
   _showDetailAddress() {
-    this.props.navigation.navigate("DetailAddress")
+    this.props.navigation.navigate("Detail")
   }
 
 

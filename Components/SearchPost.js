@@ -13,7 +13,7 @@ class SearchPost extends React.Component {
   }
 
   _searchPost() {
-    this.props.navigation.navigate("ListPost")
+    this.props.navigation.navigate('List')
   }
 
   render() {
