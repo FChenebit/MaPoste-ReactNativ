@@ -1,6 +1,10 @@
 import React from 'react'
-import { StyleSheet, View, Text, ImageBackground } from 'react-native'
+import { StyleSheet, View, Text, ImageBackground,FlatList } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import stampPriceData from '../assets/stampPriceData.js'
+import StampItem from "./StampItem"
+
 
 class StampPrice extends React.Component {
 
@@ -10,7 +14,10 @@ class StampPrice extends React.Component {
       <ImageBackground style={styles.backgroundImage} source={require('../assets/background.jpg')} >
         <SafeAreaView>
           <View style={styles.container}>
-            <Text style={styles.title}>Stamp Prices </Text>
+            <Text style={styles.title}>Stamp Prices</Text>
+            <FlatList data={stampPriceData}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({item}) => <StampItem stampItemData={item} />}  />
           </View>
         </SafeAreaView>
       </ImageBackground>
