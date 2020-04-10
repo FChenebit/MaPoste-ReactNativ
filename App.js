@@ -1,27 +1,17 @@
-/*import React from 'react';
-import {NavigationContainer } from '@react-navigation/native'
-
-
-import MaPosteNavigation from './Navigation/MaPosteNavigation'
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MaPosteNavigation/>
-    </NavigationContainer>
-  );
-}
-*/
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-
-import MyStack from './Navigation/MaPosteNavigation'
+import MyNavigation from './Navigation/MaPosteNavigation'
 
 export default function App() {
+
+
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <MyNavigation />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
