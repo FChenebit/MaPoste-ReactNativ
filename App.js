@@ -6,7 +6,6 @@ import MyNavigation from './Navigation/MaPosteNavigation'
 
 export default function App() {
 
-
   return (
     <SafeAreaProvider>
       <NavigationContainer>

@@ -13,7 +13,7 @@ class StampPrice extends React.Component {
     return (
       <ImageBackground style={styles.backgroundImage} source={require('../assets/background.jpg')} >
         <SafeAreaView>
-          <View style={styles.container}>
+          <View>
             <Text style={styles.title}>Stamp Prices</Text>
             <FlatList data={stampPriceData} style={styles.list}
               keyExtractor={(item) => item.id.toString()}
@@ -27,13 +27,9 @@ class StampPrice extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,    
-  },
+
   backgroundImage: {
-    flex: 1,    
-    justifyContent: "center",
-    alignItems: "center"
+    flex: 1,
   },
   title: {
     fontWeight: 'bold',
@@ -45,8 +41,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#000000',
     textAlign: 'center',
-  },
-  list: {
   }
 });
 
