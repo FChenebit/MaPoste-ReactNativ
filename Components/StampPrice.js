@@ -15,7 +15,7 @@ class StampPrice extends React.Component {
         <SafeAreaView>
           <View style={styles.container}>
             <Text style={styles.title}>Stamp Prices</Text>
-            <FlatList data={stampPriceData}
+            <FlatList data={stampPriceData} style={styles.list}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({item}) => <StampItem stampItemData={item} />}  />
           </View>
@@ -28,21 +28,16 @@ class StampPrice extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1,    
   },
   backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
+    flex: 1,    
     justifyContent: "center",
     alignItems: "center"
   },
   title: {
     fontWeight: 'bold',
     fontSize: 35,
-    flex: 1,
     flexWrap: 'wrap',
     marginLeft: 5,
     marginRight: 5,
@@ -51,6 +46,8 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
   },
+  list: {
+  }
 });
 
 export default StampPrice;

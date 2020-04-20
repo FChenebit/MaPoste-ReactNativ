@@ -3,7 +3,7 @@ const stampPricesData = [
       "id":1,
       "name":"priority",
       "imageSrc":require("./stampsImages/stampsRedMarianne.jpg"),
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad",
       "price":13.92
   },
   {
