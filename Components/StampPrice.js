@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import stampPriceData from '../assets/stampPriceData.js'
 import StampItem from "./StampItem"
 
-
 class StampPrice extends React.Component {
 
   render() {
@@ -17,7 +16,7 @@ class StampPrice extends React.Component {
             <Text style={styles.title}>Stamp Prices</Text>
             <FlatList data={stampPriceData} style={styles.list}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={({item}) => <StampItem stampItemData={item} />}  />
+              renderItem={({item}) => <StampItem stampItemData={item} />} />
           </View>
         </SafeAreaView>
       </ImageBackground>
@@ -27,7 +26,6 @@ class StampPrice extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
   backgroundImage: {
     flex: 1,
   },
