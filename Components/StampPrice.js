@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   },
   header_button: {
     paddingLeft:10,
-    backgroundColor:'green'
+    backgroundColor:'green',
+    flex:1
   },
   title: {
     fontWeight: 'bold',
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#FFFFFF',
     textAlign: 'center',
-    flex:1
+    flex:5
+
   }
 });
 
