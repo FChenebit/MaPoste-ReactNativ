@@ -37,19 +37,17 @@ const styles = StyleSheet.create({
     borderWidth: 2
   },
   text_container: {
-    backgroundColor:'black',
     flex:1,
   },
   title: {
     flex:1,
     fontWeight: 'bold',
+    marginTop:5,
     fontSize: 20,
-    backgroundColor:'green'
   },
   description: {
     flex:3,
     fontSize: 15,
-    backgroundColor:'yellow',
     flexWrap: 'wrap',
     margin:5
   }

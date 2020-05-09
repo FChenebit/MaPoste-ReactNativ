@@ -1,7 +1,6 @@
 import React from 'react'
-import { StyleSheet, View, Text, ImageBackground, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, ImageBackground, FlatList, TouchableOpacity,Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Icon } from 'react-native-elements'
 
 import stampPriceData from '../assets/stampPriceData.js'
 import StampItem from "./StampItem"
@@ -15,8 +14,8 @@ class StampPrice extends React.Component {
         <SafeAreaView>
           <View>
             <View style={styles.header}>
-              <TouchableOpacity style={styles.header_button} onPress={() => console.log('toggle menu')}> 
-                <Icon name="list" size={40} color={'white'} />
+              <TouchableOpacity style={styles.header_button} onPress={() => this.props.navigation.toggleDrawer()}> 
+                <Image source={require('../assets/iconHamburger.png')} style={{ width:40, height:40}} />
               </TouchableOpacity>
               <Text style={styles.title}>Stamp Prices</Text>
             </View>
@@ -41,20 +40,18 @@ const styles = StyleSheet.create({
   },
   header_button: {
     paddingLeft:10,
-    backgroundColor:'green',
     flex:1
   },
   title: {
     fontWeight: 'bold',
     fontSize: 35,
     flexWrap: 'wrap',
-    marginLeft: -50,
+    marginLeft: 0,
     marginTop: 10,
     marginBottom: 10,
     color: '#FFFFFF',
     textAlign: 'center',
     flex:5
-
   }
 });
 
