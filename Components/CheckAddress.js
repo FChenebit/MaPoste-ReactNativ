@@ -8,8 +8,16 @@ import {getAddresses} from '../API/addressAPI'
 
 class CheckAddress extends React.Component {
 
+  log(error) {
+    console.log(error.reponse.error)
+  }
+
   _searchAddress() {
+    console.log('TFC')
     getAddresses('TFC').then(data => console.log(data))
+    .catch(
+      this.log
+      )
   }
 
 
