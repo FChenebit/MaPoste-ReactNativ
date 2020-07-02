@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Button,View, Text,ImageBackground,FlatList,TouchableOpacity,Image} from 'react-native'
+import { StyleSheet, Button,View, Text,ImageBackground,FlatList,TouchableOpacity,Image,Alert} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {getAddresses} from '../API/addressAPI'
@@ -9,15 +9,20 @@ import {getAddresses} from '../API/addressAPI'
 class CheckAddress extends React.Component {
 
   log(error) {
-    console.log(error.reponse.error)
+    console.log('inside view error')
+    console.log('param :' + error)
+    Alert.alert('Erreur interne',error.message,[{text:'Ok'}])
   }
 
+  showAddress(data) {
+    if(data.reponse.error) {
+      Alert.alert('Erreur addresse',data.reponse.error,[{text:'Ok'}])
+    }
+  }
+ 
   _searchAddress() {
     console.log('TFC')
-    getAddresses('TFC').then(data => console.log(data))
-    .catch(
-      this.log
-      )
+    getAddresses('TFC').then(this.showAddress).catch(this.log)
   }
 
 
