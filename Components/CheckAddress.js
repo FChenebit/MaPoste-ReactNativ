@@ -5,24 +5,44 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {getAddresses} from '../API/addressAPI'
 
 
-
 class CheckAddress extends React.Component {
 
-  log(error) {
+  constructor(props) {
+    super(props)
+    this._checkAddressError = this._checkAddressError.bind(this)
+    this._showAddress = this._showAddress.bind(this) // this bind let ther this inside showAddress to be defined
+  }
+
+  _checkAddressError(data) {
+    let check = true
+    if(data) {
+      if(data.response) {
+        if(data.response.error){
+          check = false
+          Alert.alert('Erreur addresse',data.reponse.error,[{text:'Ok'}])          
+        } 
+      }
+    }
+    return check
+  }
+
+  _log(error) {
     console.log('inside view error')
     console.log('param :' + error)
     Alert.alert('Erreur interne',error.message,[{text:'Ok'}])
   }
 
-  showAddress(data) {
-    if(data.reponse.error) {
-      Alert.alert('Erreur addresse',data.reponse.error,[{text:'Ok'}])
+
+  _showAddress(data) {
+    console.log('view result 2 ' + JSON.stringify(data))
+    if(this._checkAddressError(data)) {
+      console.log('go to list address')
     }
   }
  
   _searchAddress() {
     console.log('TFC')
-    getAddresses('TFC').then(this.showAddress).catch(this.log)
+    getAddresses('TFC').then(this._showAddress).catch(this._log)
   }
 
 
