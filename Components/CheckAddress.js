@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Button,View, Text,ImageBackground,FlatList,TouchableOpacity,Image,Alert} from 'react-native'
+import { StyleSheet, Button,View, Text,ImageBackground,TouchableOpacity,Image,Alert} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {getAddresses} from '../API/addressAPI'
@@ -37,6 +37,8 @@ class CheckAddress extends React.Component {
     console.log('view result 2 ' + JSON.stringify(data))
     if(this._checkAddressError(data)) {
       console.log('go to list address')
+      this.props.navigation.navigate('List',{addressList:data})
+      //this.props.navigation.navigate('List')
     }
   }
  
