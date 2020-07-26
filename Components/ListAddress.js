@@ -12,6 +12,12 @@ class ListAddress extends React.Component {
       addressList: undefined
     }
 
+    this._goToDetail = this._goToDetail.bind(this)
+
+  }
+
+  _goToDetail(itemId) {
+    this.props.navigation.navigate('Detail');//,{adressID:itemId})
   }
 
   componentDidMount() {
@@ -36,7 +42,7 @@ class ListAddress extends React.Component {
           </View>
           <FlatList data={this.state.addressList} style={styles.list}
               keyExtractor={(item) => item.code}
-              renderItem={({item}) => <AddressItem addressItemData={item} />} 
+              renderItem={({item}) => <AddressItem addressItemData={item} goToDetail={this._goToDetail} />} 
           />
         </View>
       </SafeAreaView>

@@ -4,15 +4,8 @@ import { StyleSheet, View, Text,Image,TouchableOpacity } from 'react-native'
 
 class AddressItem extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this._goToDetail = this._goToDetail.bind(this)
-  }
-
-
-  _goToDetail(itemId) {
-    this.props.navigation.navigate('Detail');//,{adressID:itemId})
-  }
+  // this.props.navigation n'est pas défini, car on n'est pas dans une fenetre.
+  // donc il faut passer la fonction qui va dans la fenêtre détail en props
 
   render() {
     const itemData = this.props.addressItemData;
@@ -22,7 +15,7 @@ class AddressItem extends React.Component {
 
     return (
       <TouchableOpacity style={styles.container}
-          onPress={() => this._goToDetail(itemData.code)}>
+          onPress={() => this.props.goToDetail(itemData.code)}>  
         <Image
             style={styles.image}
             source={require('../assets/iconAddressDetail.png')}
