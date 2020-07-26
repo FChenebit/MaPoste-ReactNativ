@@ -1,7 +1,8 @@
 import React from 'react'
-import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet} from 'react-native'
+import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet,FlatList} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import AddressItem from './AddressItem.js'
 
 class ListAddress extends React.Component {
 
@@ -21,7 +22,7 @@ class ListAddress extends React.Component {
 
   render() {
 
-    console.log('address List : ' + this.state.addressList)
+    console.log('address List : ' + JSON.stringify(this.state.addressList))
 
     return (
     <ImageBackground style={styles.backgroundImage} source={require('../assets/background.jpg')} >
@@ -33,6 +34,10 @@ class ListAddress extends React.Component {
             </TouchableOpacity>
             <Text style={styles.title}>List Address</Text>
           </View>
+          <FlatList data={this.state.addressList} style={styles.list}
+              keyExtractor={(item) => item.code}
+              renderItem={({item}) => <AddressItem addressItemData={item} />} 
+          />
         </View>
       </SafeAreaView>
     </ImageBackground>
