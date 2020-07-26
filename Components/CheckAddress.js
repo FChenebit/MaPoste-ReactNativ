@@ -22,7 +22,7 @@ class CheckAddress extends React.Component {
           Alert.alert('Erreur addresse',data.reponse.error,[{text:'Ok'}])          
         } 
       }
-    }
+     }
     return check
   }
 

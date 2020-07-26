@@ -1,9 +1,18 @@
 import React from 'react'
-import { StyleSheet, View, Text,Image } from 'react-native'
+import { StyleSheet, View, Text,Image,TouchableOpacity } from 'react-native'
 
 
 class AddressItem extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this._goToDetail = this._goToDetail.bind(this)
+  }
+
+
+  _goToDetail(itemId) {
+    this.props.navigation.navigate('Detail');//,{adressID:itemId})
+  }
 
   render() {
     const itemData = this.props.addressItemData;
@@ -12,7 +21,8 @@ class AddressItem extends React.Component {
     console.log('item Data code : ' + itemData.code)
 
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container}
+          onPress={() => this._goToDetail(itemData.code)}>
         <Image
             style={styles.image}
             source={require('../assets/iconAddressDetail.png')}
@@ -20,7 +30,7 @@ class AddressItem extends React.Component {
         <View style={styles.text_container}>
           <Text style={styles.description} numberOfLines={3}>{itemData.adresse}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

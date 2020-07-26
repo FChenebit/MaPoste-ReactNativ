@@ -9,3 +9,15 @@ export function getAddresses(addressToCheck) {
     .then((response) => {console.log('API' + JSON.stringify(response)); return response.json()})
    .catch((reason) => {console.log('API ' + reason); throw reason})
 }
+
+export function getAdresseDetail(adressToGetId) {
+
+  const url = 'https://api.laposte.fr/controladresse/v1/adresses/684732330'
+
+  return fetch(url,{headers:{'x-okapi-key':APIKey}})
+    .then((response) => {console.log('API adress detail' + JSON.stringify(response)); return response.json()})
+    .catch((reason) => {console.log('API adress detail ' + reason); throw reason})
+
+
+
+}
