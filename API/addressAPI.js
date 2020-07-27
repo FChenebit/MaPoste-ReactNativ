@@ -10,12 +10,19 @@ export function getAddresses(addressToCheck) {
    .catch((reason) => {console.log('API ' + reason); throw reason})
 }
 
-export function getAdresseDetail(adressToGetId) {
+export function getAdressDetail(addressToGetId) {
 
-  const url = 'https://api.laposte.fr/controladresse/v1/adresses/853355281'
+  const url = 'https://api.laposte.fr/controladresse/v1/adresses/'
 
-  return fetch(url,{headers:{'x-okapi-key':APIKey}})
-    .then((response) => {console.log('API adress detail' + JSON.stringify(response)); return response.json()})
+  return fetch((url+addressToGetId),{headers:{'x-okapi-key':APIKey}})
+    .then((response) => {
+      console.log('API adress detail OK : ' + JSON.stringify(response));
+      if(response.ok) {
+        return response.json()
+      } else {
+        throw 'error, no address found'
+      }
+    })
     .catch((reason) => {console.log('API adress detail ' + reason); throw reason})
 
 

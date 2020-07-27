@@ -17,7 +17,8 @@ class ListAddress extends React.Component {
   }
 
   _goToDetail(itemId) {
-    this.props.navigation.navigate('Detail');//,{adressID:itemId})
+    console.log('go to detail for ' + itemId)
+    this.props.navigation.navigate('Detail',{adressID:itemId})
   }
 
   componentDidMount() {

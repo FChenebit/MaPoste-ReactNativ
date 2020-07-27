@@ -1,8 +1,8 @@
 import React from 'react'
-import { StyleSheet, View, Text,ImageBackground,TouchableOpacity,Image} from 'react-native'
+import { StyleSheet, View, Text,ImageBackground,TouchableOpacity,Image,Alert} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import {getAdresseDetail} from '../API/addressAPI'
+import {getAdressDetail} from '../API/addressAPI'
 
 
 class DetailAddress extends React.Component {
@@ -74,8 +74,8 @@ class DetailAddress extends React.Component {
   }
 
   _getDetailAddress() {
-    console.log('TFC')
-    getAdresseDetail('TFC').then(this._showAddress).catch(this._log)
+    console.log('_getDetailAddress ' + this.props.route.params.adressID)
+    getAdressDetail(this.props.route.params.adressID).then(this._showAddress).catch((error) =>  Alert.alert('Erreur interne',JSON.stringify(error),[{text:'Ok'}]))
   }
 
   render() {
