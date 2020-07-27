@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Button,View, Text,ImageBackground,TouchableOpacity,Image,Alert} from 'react-native'
+import { StyleSheet, Button,View, Text,ImageBackground,TouchableOpacity,Image,Alert,TextInput} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {getAddresses} from '../API/addressAPI'
@@ -9,6 +9,7 @@ class CheckAddress extends React.Component {
 
   constructor(props) {
     super(props)
+    this.searchedText = ""
     this._checkAddressError = this._checkAddressError.bind(this)
     this._showAddress = this._showAddress.bind(this) // this bind let ther this inside showAddress to be defined
   }
@@ -24,6 +25,10 @@ class CheckAddress extends React.Component {
       }
      }
     return check
+  }
+
+  _searchTextInputChanged(text) {
+    this.searchedText = text
   }
 
   _log(error) {
@@ -43,8 +48,8 @@ class CheckAddress extends React.Component {
   }
  
   _searchAddress() {
-    console.log('TFC')
-    getAddresses('TFC').then(this._showAddress).catch(this._log)
+    console.log('searching '+ this.searchedText)
+    getAddresses(this.searchedText).then(this._showAddress).catch(this._log)
   }
 
 
@@ -59,6 +64,13 @@ class CheckAddress extends React.Component {
             </TouchableOpacity>
             <Text style={styles.title}>Check Address</Text>
           </View>
+          <TextInput
+            multiline={true}
+            autoCorrect={false}           
+            style={styles.textinput}
+            placeholder='Adresse à rechercher'
+            onChangeText={(text) => this._searchTextInputChanged(text)}            
+          />
           <Button title='Check' onPress={() => this._searchAddress()}/>
         </View>
       </SafeAreaView>
@@ -79,6 +91,16 @@ const styles = StyleSheet.create({
   header_button: {
     paddingLeft:10,
     flex:1
+  },
+  textinput: {
+    marginLeft: 5,
+    marginRight: 5,
+    height: 150,
+    marginBottom:30,
+    borderColor: '#000000',
+    backgroundColor:'#FFFFFF',
+    borderWidth: 1,
+    paddingLeft: 5
   },
   title: {
     fontWeight: 'bold',
