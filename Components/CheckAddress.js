@@ -41,9 +41,15 @@ class CheckAddress extends React.Component {
   _showAddress(data) {
     console.log('view result 2 ' + JSON.stringify(data))
     if(this._checkAddressError(data)) {
-      console.log('go to list address')
-      this.props.navigation.navigate('List',{addressList:data})
-      //this.props.navigation.navigate('List')
+      if(data.length > 1) {
+        this.props.navigation.navigate('List',{addressList:data})
+      } else {
+        if(data.length === 1) {
+          this.props.navigation.navigate('Detail',{adressID:data[0].code})
+        } else {
+          Alert.alert('Erreur','aucune adresse correspondante',[{text:'Ok'}])
+        }
+      }
     }
   }
  
