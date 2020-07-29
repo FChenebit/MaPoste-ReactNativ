@@ -10,9 +10,6 @@ class AddressItem extends React.Component {
   render() {
     const itemData = this.props.addressItemData;
 
-    console.log('item Data : ' +JSON.stringify(itemData))
-    console.log('item Data code : ' + itemData.code)
-
     return (
       <TouchableOpacity style={styles.container}
           onPress={() => this.props.goToDetail(itemData.code)}>  

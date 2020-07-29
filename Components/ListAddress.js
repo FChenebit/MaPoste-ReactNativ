@@ -29,8 +29,6 @@ class ListAddress extends React.Component {
 
   render() {
 
-    console.log('address List : ' + JSON.stringify(this.state.addressList))
-
     return (
     <ImageBackground style={styles.backgroundImage} source={require('../assets/background.jpg')} >
       <SafeAreaView>

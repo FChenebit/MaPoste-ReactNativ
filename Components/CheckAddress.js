@@ -32,14 +32,12 @@ class CheckAddress extends React.Component {
   }
 
   _log(error) {
-    console.log('inside view error')
-    console.log('param :' + error)
+    console.log('inside view error param ' +error )
     Alert.alert('Erreur interne',error.message,[{text:'Ok'}])
   }
 
 
   _showAddress(data) {
-    console.log('view result 2 ' + JSON.stringify(data))
     if(this._checkAddressError(data)) {
       if(data.length > 1) {
         this.props.navigation.navigate('List',{addressList:data})
