@@ -7,6 +7,7 @@ import SearchPost from '../Components/SearchPost'
 import ListPost from '../Components/ListPost'
 import CheckAddress from '../Components/CheckAddress'
 import DetailAddress from '../Components/DetailAddress'
+import ListAddress from '../Components/ListAddress'
 import StampPrice from '../Components/StampPrice'
 
 const SearchStackNavigator = createStackNavigator();
@@ -34,6 +35,10 @@ function AddressStack() {
       <AddressStackNavigator.Screen 
         name="Check"
         component={CheckAddress}
+      />
+      <AddressStackNavigator.Screen 
+        name="List"
+        component={ListAddress}
       />
       <AddressStackNavigator.Screen 
         name="Detail"
@@ -99,7 +104,5 @@ function AppDrawer() {
     </AppDrawerNavigator.Navigator>
   )
 }
-
-
 
 export default AppDrawer;
