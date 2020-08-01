@@ -1,0 +1,27 @@
+API recherche de bureau de poste
+
+1 Cas normaux
+
+curl --request GET \
+>  --url https://api.laposte.fr/datanova/v1/pointscontact?q=75013 \
+> --header 'x-okapi-key: r9/UI1MbuMxlvem3CRTfseKSsO7X0Dx0FGGZ5UQM2QNqjxDv1DWqemnDbU+h91e2'
+
+recherche poste par CP
+curl --request GET  --url 'https://api.laposte.fr/datanova/v1/pointscontact?q=75013&rows=20'  --header 'x-okapi-key: r9/UI1MbuMxlvem3CRTfseKSsO7X0Dx0FGGZ5UQM2QNqjxDv1DWqemnDbU+h91e2'
+
+recherche poste par géoloc
+curl --request GET  --url 'https://api.laposte.fr/datanova/v1/pointscontact?rows=15&geofilter.distance=46.362199%2C2.533828%2C30000'  --header 'x-okapi-key: r9/UI1MbuMxlvem3CRTfseKSsO7X0Dx0FGGZ5UQM2QNqjxDv1DWqemnDbU+h91e2'
+
+recherche par nom
+curl --request GET  --url 'https://api.laposte.fr/datanova/v1/pointscontact?q=localite%3ADOMERAT&rows=15'  --header 'x-okapi-key: r9/UI1MbuMxlvem3CRTfseKSsO7X0Dx0FGGZ5UQM2QNqjxDv1DWqemnDbU+h91e2'
+
+redressement d'adresse
+curl --request GET  --url  'https://api.laposte.fr/controladresse/v1/adresses?q=98%20rue%20Brillat%20savarin%2075013%20Paris' --header 'x-okapi-key: r9/UI1MbuMxlvem3CRTfseKSsO7X0Dx0FGGZ5UQM2QNqjxDv1DWqemnDbU+h91e2'
+
+détail adresse
+curl --request GET  --url  'https://api.laposte.fr/controladresse/v1/adresses/684732330' --header 'x-okapi-key: r9/UI1MbuMxlvem3CRTfseKSsO7X0Dx0FGGZ5UQM2QNqjxDv1DWqemnDbU+h91e2'
+
+2 cas bizarre
+
+redressement plusieurs adresses
+curl --request GET  --url  'https://api.laposte.fr/controladresse/v1/adresses?q=rue%20Brillat%20savarin%2075013%20Paris' --header 'x-okapi-key: r9/UI1MbuMxlvem3CRTfseKSsO7X0Dx0FGGZ5UQM2QNqjxDv1DWqemnDbU+h91e2'
