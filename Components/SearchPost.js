@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Button,Text} from 'react-native'
 
-import {getPostByPostalCode} from '../API/postAPI'
+import {getPostByPostalCode,getPostByLocation} from '../API/postAPI'
 
 class SearchPost extends React.Component {
 
@@ -21,8 +21,14 @@ class SearchPost extends React.Component {
     Alert.alert('Erreur interne',error.message,[{text:'Ok'}])
   }
 
-  _searchPost() {
+  _searchPostByPostalCode() {
     getPostByPostalCode('75013').then(this._showPost).catch(this._log)
+
+    //this.props.navigation.navigate('List')
+  }
+
+  _searchPostByLocation() {
+    getPostByLocation('1','2').then(this._showPost).catch(this._log)
 
     //this.props.navigation.navigate('List')
   }
@@ -32,7 +38,8 @@ class SearchPost extends React.Component {
     return (
       <View style={styles.container} >
         <Text>PostSearch</Text>
-        <Button title='Search' onPress={() => this._searchPost()}/>
+        <Button title='Search by Postal Code' onPress={() => this._searchPostByPostalCode()}/>
+        <Button title='Search by Current Location' onPress={() => this._searchPostByLocation()}/>
       </View>
     )
   }
