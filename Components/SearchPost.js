@@ -1,20 +1,32 @@
 import React from 'react'
 import { StyleSheet, View, Button,Text} from 'react-native'
 
+import {getPostByPostalCode} from '../API/postAPI'
 
 class SearchPost extends React.Component {
 
-  componentDidMount() {
-    console.log('SearchPost DID MOUNT');
+  constructor(props) {
+    super(props)
+    this.searchedText = ""
+    this._log = this._log.bind(this)
+    this._showPost = this._showPost.bind(this) // this bind let ther this inside showAddress to be defined
   }
 
-  componentWillUnmount() {
-    console.log('SearchPost WILL UNMOUNT');
+  _showPost(data) {
+    console.log(data);
+  }
+
+  _log(error) {
+    console.log('inside view error param ' +error )
+    Alert.alert('Erreur interne',error.message,[{text:'Ok'}])
   }
 
   _searchPost() {
-    this.props.navigation.navigate('List')
+    getPostByPostalCode('75013').then(this._showPost).catch(this._log)
+
+    //this.props.navigation.navigate('List')
   }
+
 
   render() {
     return (
