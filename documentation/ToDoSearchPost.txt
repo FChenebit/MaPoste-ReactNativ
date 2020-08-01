@@ -1,5 +1,5 @@
 1 Lancer la requete de recherche par adresse OK
-2 Lancer la requete par géolocalisation
+2 Lancer la requete par géolocalisation OK
 3 Afficher la liste des postes
 4 dans la fenêtre liste, sélecteur pour liste/carte
 5 afficher la carte des postes

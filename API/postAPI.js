@@ -3,6 +3,8 @@ import APIKey from './config.js'
 export function getPostByPostalCode(postalCode) {
 
     const url = 'https://api.laposte.fr/datanova/v1/pointscontact?rows=20&q=75013'
+//    const url = 'Blabla'
+//const url = 'https://api.laposte.fr/datanova/pointscontact'
 
     return fetch((url),{headers:{'x-okapi-key':APIKey}})
       .then((response) => {
