@@ -17,12 +17,6 @@ class ListPost extends React.Component {
     this.state = {
       postList: undefined,
       selectedMapOrList:0,
-      region: {
-        latitude: 37.3230,
-        longitude: -122.0322,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0922,
-      }
     }
 
     this._goToDetail = this._goToDetail.bind(this)
@@ -37,6 +31,14 @@ class ListPost extends React.Component {
     this.setState({
       selectedMapOrList: index
     });
+  }
+
+  _buildMapRegionAndMark = (postList) => {
+    var maxLat = -90
+    var minLat = 90
+    var maxLon = -90
+    var minLon = 90
+    
   }
 
   _goToDetail(post) {
