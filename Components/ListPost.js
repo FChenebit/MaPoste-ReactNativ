@@ -1,6 +1,7 @@
 import React from 'react'
 import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet,FlatList} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SegmentedControlTab from 'react-native-segmented-control-ui'
 
 import PostItem from './PostItem.js'
 
@@ -13,11 +14,19 @@ class ListPost extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      postList: undefined
+      postList: undefined,
+      selectedMapOrList:0
     }
 
     this._goToDetail = this._goToDetail.bind(this)
 
+  }
+
+  _handleIndexChange(index) {
+    console.log('selecte map or list : ' + index)
+    this.setState({
+      selectedMapOrList: index
+    });
   }
 
   _goToDetail(post) {
@@ -41,6 +50,11 @@ class ListPost extends React.Component {
             </TouchableOpacity>
             <Text style={styles.title}>List Post</Text>
           </View>
+          <SegmentedControlTab
+                    values={['List', 'Map']}
+                    selectedIndex={this.state.selectedMapOrList}
+                    onTabPress={this.handleIndexChange}
+          />
           <FlatList data={this.state.postList} style={styles.list}
               keyExtractor={(item) => item.identifiantSite}
               renderItem={({item}) => <PostItem postItemData={item} goToDetail={this._goToDetail} />} 
