@@ -5,6 +5,8 @@ import { ImageBackground,Image,Text } from "react-native";
 
 import SearchPost from '../Components/SearchPost'
 import ListPost from '../Components/ListPost'
+import DetailPost from '../Components/DetailPost'
+
 import CheckAddress from '../Components/CheckAddress'
 import DetailAddress from '../Components/DetailAddress'
 import ListAddress from '../Components/ListAddress'
@@ -22,6 +24,10 @@ function SearchStack() {
       <SearchStackNavigator.Screen
         name="List"
         component={ListPost}
+      />
+      <SearchStackNavigator.Screen
+        name="Detail"
+        component={DetailPost}
       />
     </SearchStackNavigator.Navigator>
   );
