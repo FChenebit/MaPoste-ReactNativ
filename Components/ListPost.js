@@ -52,8 +52,8 @@ class ListPost extends React.Component {
   render() {
     return (
       <ImageBackground style={styles.backgroundImage} source={require('../assets/background.jpg')} >
-      <SafeAreaView>
-        <View>
+      <SafeAreaView style={styles.safeAreaView}>
+        <View style={styles.containerView}> 
         <View style={styles.header}>
             <TouchableOpacity style={styles.header_button} onPress={() => this.props.navigation.goBack(null)}> 
               <Image source={require('../assets/iconBack.png')} style={{ width:40, height:40}} />
@@ -108,13 +108,13 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    
   },
+  safeAreaView: {
+    flex:1,
+  },
+  containerView: {
+    flex:1,
+  }
 });
 
 
