@@ -1,8 +1,8 @@
 1 Lancer la requete de recherche par adresse OK
 2 Lancer la requete par géolocalisation OK
-3 Afficher la liste des postes
-4 dans la fenêtre liste, sélecteur pour liste/carte
-5 afficher la carte des postes
+3 Afficher la liste des postes OK
+4 dans la fenêtre liste, sélecteur pour liste/carte OK
+5 afficher la carte des postes OK
 6 afficher détail poste sur click liste ou map
 7 détail complet de la poste
 8 entrer critère de recherche adresse

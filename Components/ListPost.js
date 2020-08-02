@@ -2,7 +2,7 @@ import React from 'react'
 import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet,FlatList} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SegmentedControlTab from 'react-native-segmented-control-ui' // https://github.com/gbhasha/react-native-segmented-control-ui
-import MapView from 'react-native-maps';
+import MapView, { Marker }  from 'react-native-maps';
 
 import PostItem from './PostItem.js'
 
@@ -33,12 +33,37 @@ class ListPost extends React.Component {
     });
   }
 
-  _buildMapRegionAndMark = (postList) => {
+  _buildMapRegion = (postList) => {
     var maxLat = -90
     var minLat = 90
     var maxLon = -90
     var minLon = 90
-    
+    postList.forEach( post => {
+      post.longitude = parseFloat(post.longitude)
+      post.latitude = parseFloat(post.latitude)
+      if(post.longitude < minLon) {
+        minLon = post.longitude
+      }
+      if(post.longitude > maxLon) {
+        maxLon = post.longitude
+      }
+      if(post.latitude < minLat) {
+        minLat = post.latitude
+      }
+      if(post.latitude > maxLat) {
+        maxLat = post.latitude
+      }
+    })
+
+    var region = {
+      latitude: minLat + (maxLat - minLat)/2,
+      longitude: minLon + (maxLon - minLon)/2,
+      latitudeDelta:(maxLat - minLat) * 1.05,
+      longitudeDelta:(maxLon - minLon) * 1.05
+
+    };
+
+    return region;
   }
 
   _goToDetail(post) {
@@ -74,8 +99,16 @@ class ListPost extends React.Component {
             />
           : <MapView
               style={styles.map}
-              initialRegion={this.state.region}
-            />
+              initialRegion={this._buildMapRegion(this.state.postList)}
+            >
+              {this.state.postList.map( (post) => {
+                return (
+                  <Marker coordinate={{ latitude: parseFloat(post.latitude),
+                     longitude: parseFloat(post.longitude) }} />
+                )
+              })}
+            </MapView>
+            
         }
         </View>
       </SafeAreaView>
