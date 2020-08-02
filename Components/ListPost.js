@@ -1,7 +1,7 @@
 import React from 'react'
 import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet,FlatList} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SegmentedControlTab from 'react-native-segmented-control-ui'
+import SegmentedControlTab from 'react-native-segmented-control-ui' // https://github.com/gbhasha/react-native-segmented-control-ui
 
 import PostItem from './PostItem.js'
 
@@ -19,10 +19,13 @@ class ListPost extends React.Component {
     }
 
     this._goToDetail = this._goToDetail.bind(this)
+    //this._handleIndexChange = this._handleIndexChange.bind(this)
+    // not necessary with the form choosen for handle change index.
+    // to look deeper
 
   }
 
-  _handleIndexChange(index) {
+  _handleIndexChange = (index) => {
     console.log('selecte map or list : ' + index)
     this.setState({
       selectedMapOrList: index
@@ -53,7 +56,7 @@ class ListPost extends React.Component {
           <SegmentedControlTab
                     values={['List', 'Map']}
                     selectedIndex={this.state.selectedMapOrList}
-                    onTabPress={this.handleIndexChange}
+                    onTabPress={this._handleIndexChange}
           />
           <FlatList data={this.state.postList} style={styles.list}
               keyExtractor={(item) => item.identifiantSite}
