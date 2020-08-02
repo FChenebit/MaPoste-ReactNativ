@@ -2,6 +2,7 @@ import React from 'react'
 import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet,FlatList} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SegmentedControlTab from 'react-native-segmented-control-ui' // https://github.com/gbhasha/react-native-segmented-control-ui
+import MapView from 'react-native-maps';
 
 import PostItem from './PostItem.js'
 
@@ -15,7 +16,13 @@ class ListPost extends React.Component {
     super(props)
     this.state = {
       postList: undefined,
-      selectedMapOrList:0
+      selectedMapOrList:0,
+      region: {
+        latitude: 37.3230,
+        longitude: -122.0322,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0922,
+      }
     }
 
     this._goToDetail = this._goToDetail.bind(this)
@@ -52,16 +59,22 @@ class ListPost extends React.Component {
               <Image source={require('../assets/iconBack.png')} style={{ width:40, height:40}} />
             </TouchableOpacity>
             <Text style={styles.title}>List Post</Text>
-          </View>
-          <SegmentedControlTab
+        </View>
+        <SegmentedControlTab
                     values={['List', 'Map']}
                     selectedIndex={this.state.selectedMapOrList}
                     onTabPress={this._handleIndexChange}
-          />
-          <FlatList data={this.state.postList} style={styles.list}
+        />
+        {this.state.selectedMapOrList===0
+          ? <FlatList data={this.state.postList}
               keyExtractor={(item) => item.identifiantSite}
               renderItem={({item}) => <PostItem postItemData={item} goToDetail={this._goToDetail} />} 
-          />
+            />
+          : <MapView
+              style={styles.map}
+              initialRegion={this.state.region}
+            />
+        }
         </View>
       </SafeAreaView>
     </ImageBackground>
@@ -92,7 +105,16 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'center',
     flex:5
-  }
+  },
+  map: {
+    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    
+  },
 });
 
 
