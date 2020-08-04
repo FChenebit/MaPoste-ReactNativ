@@ -2,7 +2,7 @@ import React from 'react'
 import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet,FlatList} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SegmentedControlTab from 'react-native-segmented-control-ui' // https://github.com/gbhasha/react-native-segmented-control-ui
-import MapView, { Marker }  from 'react-native-maps';
+import MapView, { Marker,Callout }  from 'react-native-maps';
 
 import PostItem from './PostItem.js'
 
@@ -104,7 +104,14 @@ class ListPost extends React.Component {
               {this.state.postList.map( (post) => {
                 return (
                   <Marker coordinate={{ latitude: parseFloat(post.latitude),
-                     longitude: parseFloat(post.longitude) }} />
+                     longitude: parseFloat(post.longitude) }} 
+                     onCalloutPress={() => this._goToDetail(post)}>
+                    <Callout tooltip style={styles.customView}>
+                       <View>
+                        <Text style={styles.calloutText}>{post.adresse}</Text>
+                      </View>
+                    </Callout>                       
+                  </Marker>
                 )
               })}
             </MapView>
@@ -149,6 +156,14 @@ const styles = StyleSheet.create({
   },
   containerView: {
     flex:1,
+  },
+  customView: {
+    backgroundColor:'#50A0C8'
+  },
+  calloutText: {
+    color:'#FFFFFF',
+    fontSize: 20,
+    margin:10
   }
 });
 
