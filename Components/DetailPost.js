@@ -2,7 +2,19 @@ import React from 'react'
 import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Image, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import MapView, { Marker }  from 'react-native-maps';
+
+
 class DetailPost extends React.Component {
+
+    _buildMapRegion(curLatitude,curLongitude) {
+        const newRegion = {
+            latitude: curLatitude,
+            longitude: curLongitude,
+            latitudeDelta:0.0001,
+            longitudeDelta:0.0001
+        }
+    }
 
     render() {
 
@@ -10,8 +22,8 @@ class DetailPost extends React.Component {
 
         return (
             <ImageBackground style={styles.backgroundImage} source={require('../assets/background.jpg')} >
-                <SafeAreaView>
-                    <View>
+              <SafeAreaView style={styles.safeAreaView}>
+                <View style={styles.containerView}> 
                         <View style={styles.header}>
                             <TouchableOpacity style={styles.header_button} onPress={() => this.props.navigation.goBack(null)}>
                                 <Image source={require('../assets/iconBack.png')} style={{ width: 40, height: 40 }} />
@@ -20,26 +32,21 @@ class DetailPost extends React.Component {
                         </View>
                     </View>
                     <Text style={styles.post}>
-                        adresse : {curPoste.adresse} {"\n"}
+                        adresse : {curPost.adresse} {"\n"}
                         {"\n"}
-                        caractéristique : {curPoste.caracteristique} {"\n"}
+                        caractéristique : {curPost.caracteristique} {"\n"}
                         {"\n"}
-                         A CONTINUER
-              numéro de voie : {this.state.numeroVoie} {"\n"}
+                        code postal : {curPost.codePostal} {"\n"}
                         {"\n"}
-              libelle de la voie : {this.state.libelleVoie} {"\n"}
-                        {"\n"}
-              lieu dit: {this.state.lieuDit} {"\n"}
-                        {"\n"}
-              code postal: {this.state.codePostal} {"\n"}
-                        {"\n"}
-              cedex : {this.state.codeCedex} {"\n"}
-                        {"\n"}
-              commune : {this.state.commune} {"\n"}
-                        {"\n"}
-              bloc adresse: {this.state.blocAdresse} {"\n"}
-                        {"\n"}
+                        localité : {curPost.localite}
                     </Text>
+                    <MapView
+                        style={styles.map}
+                        initialRegion={this._buildMapRegion(curPost.latitude,curPost.longitude)}
+                    >
+                      <Marker coordinate={{ latitude: parseFloat(curPost.latitude),
+                         longitude: parseFloat(curPost.longitude) }} />
+                    </MapView>
                 </SafeAreaView>
             </ImageBackground>
         )
@@ -53,7 +60,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     header_button: {
         paddingLeft: 10,
@@ -79,8 +86,20 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         color: '#FFFFFF',
         textAlign: 'left',
+    },
+    map: {
+      flex: 1,
+      marginBottom:20
+    },
+    safeAreaView: {
+      flex:1,
+      backgroundColor:'red'
+    },
+    containerView: {
+      flex:1,
+      backgroundColor:'green'
     }
 
 });
 
-export default DetailAddress;
+export default DetailPost;
