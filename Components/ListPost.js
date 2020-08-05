@@ -100,7 +100,7 @@ class ListPost extends React.Component {
           : <MapView
               style={styles.map}
               initialRegion={this._buildMapRegion(this.state.postList)}
-              showUserLocation={true}
+              showsUserLocation={true}
             >
               {this.state.postList.map( (post) => {
                 return (
