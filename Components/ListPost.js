@@ -100,11 +100,13 @@ class ListPost extends React.Component {
           : <MapView
               style={styles.map}
               initialRegion={this._buildMapRegion(this.state.postList)}
+              showUserLocation={true}
             >
               {this.state.postList.map( (post) => {
                 return (
-                  <Marker coordinate={{ latitude: parseFloat(post.latitude),
-                     longitude: parseFloat(post.longitude) }} 
+                  <Marker key={post.identifiantSite}
+                     coordinate={{ latitude: parseFloat(post.latitude),
+                     longitude: parseFloat(post.longitude) }}                      
                      onCalloutPress={() => this._goToDetail(post)}>
                     <Callout tooltip style={styles.customView}>
                        <View>
