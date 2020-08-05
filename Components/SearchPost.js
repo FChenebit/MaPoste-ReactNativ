@@ -2,6 +2,9 @@ import React from 'react'
 import { StyleSheet, View, Button,Text,ImageBackground,TouchableOpacity,Image,Alert,TextInput} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Geolocation from '@react-native-community/geolocation';
+
+
 import {getPostByPostalCode,getPostByLocation} from '../API/postAPI'
 
 class SearchPost extends React.Component {
@@ -9,8 +12,26 @@ class SearchPost extends React.Component {
   constructor(props) {
     super(props)
     this.searchedText = ""
+    this.currentUserPosition = {}
     this._log = this._log.bind(this)
     this._showPost = this._showPost.bind(this) // this bind let ther this inside showAddress to be defined
+  }
+  
+  componentDidMount(){
+    this.load()
+    this.props.navigation.addListener('willFocus', this._load)
+  }
+
+  _load = () => {
+    console.log('view did appear')
+    Geolocation.getCurrentPosition((position) => { 
+      console.log('position found ' + JSON.stringify(position));
+      this.currentUserPosition = position
+    },(error) => {
+      console.log('error geoloc : ' + JSON.stringify(error));
+      Alert.alert('Erreur geolocation ',error.message,[{text:'Ok'}]) 
+    },
+    { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }) 
   }
 
   _checkPostError(data) {
