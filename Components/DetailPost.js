@@ -11,9 +11,11 @@ class DetailPost extends React.Component {
         const newRegion = {
             latitude: curLatitude,
             longitude: curLongitude,
-            latitudeDelta:0.0001,
-            longitudeDelta:0.0001
+            latitudeDelta:0.005,
+            longitudeDelta:0.005
         }
+
+        return newRegion
     }
 
     render() {

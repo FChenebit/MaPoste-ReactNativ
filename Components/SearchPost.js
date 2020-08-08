@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Button,Text,ImageBackground,TouchableOpacity,Image,Alert,TextInput} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Geolocation from '@react-native-community/geolocation';
+//import Geolocation from '@react-native-community/geolocation';
 
 
 import {getPostByPostalCode,getPostByLocation} from '../API/postAPI'
@@ -18,20 +18,20 @@ class SearchPost extends React.Component {
   }
   
   componentDidMount(){
-    this.load()
+    this._load()
     this.props.navigation.addListener('willFocus', this._load)
   }
 
   _load = () => {
     console.log('view did appear')
-    Geolocation.getCurrentPosition((position) => { 
+    /*Geolocation.getCurrentPosition((position) => { 
       console.log('position found ' + JSON.stringify(position));
       this.currentUserPosition = position
     },(error) => {
       console.log('error geoloc : ' + JSON.stringify(error));
       Alert.alert('Erreur geolocation ',error.message,[{text:'Ok'}]) 
     },
-    { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }) 
+    { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }) */
   }
 
   _checkPostError(data) {
@@ -63,13 +63,16 @@ class SearchPost extends React.Component {
   }
 
   _searchPostByPostalCode() {
-    getPostByPostalCode('75013').then(this._showPost).catch(this._log)
+    if( (this.searchedText.length === 5) && !isNaN(this.searchedText) ) {
+      getPostByPostalCode(this.searchedText).then(this._showPost).catch(this._log)
+    } else {
+      Alert.alert('Erreur format','Le code postal doit avoir 5 chiffres',[{text:'Ok'}])
+    }
   }
 
   _searchPostByLocation() {
     getPostByLocation('1','2').then(this._showPost).catch(this._log)
 
-    //this.props.navigation.navigate('List')
   }
 
 
