@@ -8,9 +8,6 @@ import PostItem from './PostItem.js'
 
 
 class ListPost extends React.Component {
-  _goBack() {
-    this.props.navigation.goBack(null)
-  }
 
   constructor(props) {
     super(props)
@@ -19,11 +16,15 @@ class ListPost extends React.Component {
       selectedMapOrList:0,
     }
 
-    this._goToDetail = this._goToDetail.bind(this)
+    //this._goToDetail = this._goToDetail.bind(this)
     //this._handleIndexChange = this._handleIndexChange.bind(this)
     // not necessary with the form choosen for handle change index.
     // to look deeper
 
+  }
+
+  _goBack = () => {
+    this.props.navigation.goBack(null)
   }
 
   _handleIndexChange = (index) => {
@@ -66,7 +67,7 @@ class ListPost extends React.Component {
     return region;
   }
 
-  _goToDetail(post) {
+  _goToDetail= (post) => {
     console.log('go to detail for ' + JSON.stringify(post))
     this.props.navigation.navigate('Detail',{post:post})
   }

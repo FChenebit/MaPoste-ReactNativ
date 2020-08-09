@@ -13,11 +13,9 @@ class SearchPost extends React.Component {
     super(props)
     this.searchedText = ""
     this.currentUserPosition = {}
-    this._log = this._log.bind(this)
-    this._showPost = this._showPost.bind(this) // this bind let ther this inside showAddress to be defined
   }
   
-  componentDidMount(){
+  componentDidMount = () => {
     this._load()
     this.props.navigation.addListener('willFocus', this._load)
   }
@@ -34,7 +32,7 @@ class SearchPost extends React.Component {
     { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }) */
   }
 
-  _checkPostError(data) {
+  _checkPostError = (data) => {
     let check = true
     if(data) {
       if(data.code) {
@@ -46,23 +44,23 @@ class SearchPost extends React.Component {
   }
 
 
-  _showPost(data) {
+  _showPost = (data) => {
     console.log(data);
     if(this._checkPostError(data)) {
       this.props.navigation.navigate('List',{postList:data})
     }
   }
 
-  _log(error) {
+  _log = (error) => {
     console.log('inside view error param ' +error )
     Alert.alert('Erreur interne',error.message,[{text:'Ok'}])
   }
 
-  _searchTextInputChanged(text) {
+  _searchTextInputChanged = (text) => {
     this.searchedText = text
   }
 
-  _searchPostByPostalCode() {
+  _searchPostByPostalCode = () => {
     if( (this.searchedText.length === 5) && !isNaN(this.searchedText) ) {
       getPostByPostalCode(this.searchedText).then(this._showPost).catch(this._log)
     } else {
@@ -70,7 +68,7 @@ class SearchPost extends React.Component {
     }
   }
 
-  _searchPostByLocation() {
+  _searchPostByLocation = () => {
     getPostByLocation('1','2').then(this._showPost).catch(this._log)
 
   }

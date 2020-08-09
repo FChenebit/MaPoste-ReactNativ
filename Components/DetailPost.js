@@ -7,7 +7,7 @@ import MapView, { Marker }  from 'react-native-maps';
 
 class DetailPost extends React.Component {
 
-    _buildMapRegion(curLatitude,curLongitude) {
+    _buildMapRegion = (curLatitude,curLongitude) => {
         const newRegion = {
             latitude: curLatitude,
             longitude: curLongitude,
