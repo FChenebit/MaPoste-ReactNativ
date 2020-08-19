@@ -20,16 +20,15 @@ class DetailAddress extends React.Component {
       commune:'',
       blocAdresse:''
     }
-    this._showAddress = this._showAddress.bind(this)
     this._getDetailAddress()
   }
 
 
-  _goBack() {
+  _goBack = () => {
     this.props.navigation.goBack(null)
   }
 
-  _showAddress(data) {
+  _showAddress = (data) => {
     console.log('view result in detail' + JSON.stringify(data))
     var newState = {
       destinataire:'',
@@ -73,7 +72,7 @@ class DetailAddress extends React.Component {
 
   }
 
-  _getDetailAddress() {
+  _getDetailAddress = () => {
     console.log('_getDetailAddress ' + this.props.route.params.adressID)
     getAdressDetail(this.props.route.params.adressID).then(this._showAddress).catch((error) =>  Alert.alert('Erreur interne',JSON.stringify(error),[{text:'Ok'}]))
   }

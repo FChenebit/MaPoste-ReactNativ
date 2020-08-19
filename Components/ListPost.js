@@ -1,30 +1,174 @@
 import React from 'react'
-import { StyleSheet, View, Text,Button} from 'react-native'
+import { View,Text,ImageBackground,TouchableOpacity,Image,StyleSheet,FlatList} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
+import SegmentedControlTab from 'react-native-segmented-control-ui' // https://github.com/gbhasha/react-native-segmented-control-ui
+import MapView, { Marker,Callout }  from 'react-native-maps';
+
+import PostItem from './PostItem.js'
 
 
 class ListPost extends React.Component {
-  _goBack() {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      postList: undefined,
+      selectedMapOrList:0,
+    }
+
+    //this._goToDetail = this._goToDetail.bind(this)
+    //this._handleIndexChange = this._handleIndexChange.bind(this)
+    // not necessary with the form choosen for handle change index.
+    // to look deeper
+
+  }
+
+  _goBack = () => {
     this.props.navigation.goBack(null)
   }
 
+  _handleIndexChange = (index) => {
+    console.log('selecte map or list : ' + index)
+    this.setState({
+      selectedMapOrList: index
+    });
+  }
+
+  _buildMapRegion = (postList) => {
+    var maxLat = -90
+    var minLat = 90
+    var maxLon = -90
+    var minLon = 90
+    postList.forEach( post => {
+      post.longitude = parseFloat(post.longitude)
+      post.latitude = parseFloat(post.latitude)
+      if(post.longitude < minLon) {
+        minLon = post.longitude
+      }
+      if(post.longitude > maxLon) {
+        maxLon = post.longitude
+      }
+      if(post.latitude < minLat) {
+        minLat = post.latitude
+      }
+      if(post.latitude > maxLat) {
+        maxLat = post.latitude
+      }
+    })
+
+    var region = {
+      latitude: minLat + (maxLat - minLat)/2,
+      longitude: minLon + (maxLon - minLon)/2,
+      latitudeDelta:(maxLat - minLat) * 1.05,
+      longitudeDelta:(maxLon - minLon) * 1.05
+
+    };
+
+    return region;
+  }
+
+  _goToDetail= (post) => {
+    console.log('go to detail for ' + JSON.stringify(post))
+    this.props.navigation.navigate('Detail',{post:post})
+  }
+
+  componentDidMount() {
+    this.setState({ postList:this.props.route.params.postList })
+  }
+
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>ListPost</Text>
-        <Button title='Back' onPress={() => this._goBack()}/>
-      </View>
-    )
+      <ImageBackground style={styles.backgroundImage} source={require('../assets/background.jpg')} >
+      <SafeAreaView style={styles.safeAreaView}>
+        <View style={styles.containerView}> 
+        <View style={styles.header}>
+            <TouchableOpacity style={styles.header_button} onPress={() => this.props.navigation.goBack(null)}> 
+              <Image source={require('../assets/iconBack.png')} style={{ width:40, height:40}} />
+            </TouchableOpacity>
+            <Text style={styles.title}>List Post</Text>
+        </View>
+        <SegmentedControlTab
+                    values={['List', 'Map']}
+                    selectedIndex={this.state.selectedMapOrList}
+                    onTabPress={this._handleIndexChange}
+        />
+        {this.state.selectedMapOrList===0
+          ? <FlatList data={this.state.postList}
+              keyExtractor={(item) => item.identifiantSite}
+              renderItem={({item}) => <PostItem postItemData={item} goToDetail={this._goToDetail} />} 
+            />
+          : <MapView
+              style={styles.map}
+              initialRegion={this._buildMapRegion(this.state.postList)}
+              showsUserLocation={true}
+            >
+              {this.state.postList.map( (post) => {
+                return (
+                  <Marker key={post.identifiantSite}
+                     coordinate={{ latitude: parseFloat(post.latitude),
+                     longitude: parseFloat(post.longitude) }}                      
+                     onCalloutPress={() => this._goToDetail(post)}>
+                    <Callout tooltip style={styles.customView}>
+                       <View>
+                        <Text style={styles.calloutText}>{post.adresse}</Text>
+                      </View>
+                    </Callout>                       
+                  </Marker>
+                )
+              })}
+            </MapView>
+            
+        }
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
+     )
   }
 
 }
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundImage: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  header: {
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  header_button: {
+    paddingLeft:10,
+    flex:1
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 35,
+    flexWrap: 'wrap',
+    marginLeft: 0,
+    marginTop: 10,
+    marginBottom: 10,
+    color: '#FFFFFF',
+    textAlign: 'center',
+    flex:5
+  },
+  map: {
+    flex: 1,
+  },
+  safeAreaView: {
+    flex:1,
+  },
+  containerView: {
+    flex:1,
+  },
+  customView: {
+    backgroundColor:'#50A0C8'
+  },
+  calloutText: {
+    color:'#FFFFFF',
+    fontSize: 20,
+    margin:10
+  }
 });
+
 
 export default ListPost;
