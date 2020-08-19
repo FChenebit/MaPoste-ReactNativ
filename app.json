@@ -22,8 +22,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.francoischenebit.MaPoste"
     },
-    "sdkVersion": "37.0.0"
+    "sdkVersion": "37.0.0",
+    "android": {
+      "package": "com.francoischenebit.MaPoste"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
