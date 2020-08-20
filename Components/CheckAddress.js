@@ -10,11 +10,9 @@ class CheckAddress extends React.Component {
   constructor(props) {
     super(props)
     this.searchedText = ""
-    this._checkAddressError = this._checkAddressError.bind(this)
-    this._showAddress = this._showAddress.bind(this) // this bind let ther this inside showAddress to be defined
   }
 
-  _checkAddressError(data) {
+  _checkAddressError = (data) => {
     let check = true
     if(data) {
       if(data.response) {
@@ -27,17 +25,17 @@ class CheckAddress extends React.Component {
     return check
   }
 
-  _searchTextInputChanged(text) {
+  _searchTextInputChanged= (text) => {
     this.searchedText = text
   }
 
-  _log(error) {
+  _log = (error) => {
     console.log('inside view error param ' +error )
     Alert.alert('Erreur interne',error.message,[{text:'Ok'}])
   }
 
 
-  _showAddress(data) {
+  _showAddress = (data) => {
     if(this._checkAddressError(data)) {
       if(data.length > 1) {
         this.props.navigation.navigate('List',{addressList:data})
@@ -51,7 +49,7 @@ class CheckAddress extends React.Component {
     }
   }
  
-  _searchAddress() {
+  _searchAddress = () => {
     console.log('searching '+ this.searchedText)
     getAddresses(this.searchedText).then(this._showAddress).catch(this._log)
   }

@@ -12,16 +12,14 @@ class ListAddress extends React.Component {
       addressList: undefined
     }
 
-    this._goToDetail = this._goToDetail.bind(this)
-
   }
 
-  _goToDetail(itemId) {
+  _goToDetail = (itemId) => {
     console.log('go to detail for ' + itemId)
     this.props.navigation.navigate('Detail',{adressID:itemId})
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     console.log('this.props.route ' + JSON.stringify(this.props.route)) 
     console.log('this.props.state ' + JSON.stringify(this.props.state)) // must use route to get params, I don't know why
     this.setState({ addressList:this.props.route.params.addressList })
