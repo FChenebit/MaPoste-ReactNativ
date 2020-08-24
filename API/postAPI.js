@@ -17,7 +17,10 @@ export function getPostByPostalCode(postalCode) {
 
 export function getPostByLocation(longitude, lattitude) {
 
-  const url = 'https://api.laposte.fr/datanova/v1/pointscontact?rows=15&geofilter.distance=46.362199%2C2.533828%2C30000'
+  //const url = 'https://api.laposte.fr/datanova/v1/pointscontact?rows=15&geofilter.distance=46.362199%2C2.533828%2C30000'
+  //const url =   'https://api.laposte.fr/datanova/v1/pointscontact?rows=15&geofilter.distance=48.831483%2C2.355692%2C30000'
+  const url =   'https://api.laposte.fr/datanova/v1/pointscontact?rows=15&geofilter.distance='+longitude+'%2C'+lattitude+'%2C30000'
+
 
   return fetch((url),{headers:{'x-okapi-key':APIKey}})
     .then((response) => {
