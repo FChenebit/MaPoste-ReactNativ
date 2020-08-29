@@ -10,3 +10,13 @@
 
 Au final, reste à merger la branche en cours sur master, et mettre la master 
 dans un autre folder, yarn install et vérifier que tout marche encore. 
+
+Fait, mais du coup dans l'autre folder, j'ai du faire 
+pod deintegrate
+pod install
+
+je pense qu'il y a croisement des flux dans mon installation. Idéalement, je pourrais repartir d'une install neuve
+Sinon, j'ai ajouté la version dans le navigateur, ce que j'aurais du faire depuis longtemps
+Je ne peux pas committer cette branche, puisque j'ai juste récupéré le zip. A l'origine je voulais juste vérifier que ca marche
+
+En terme de méthode, j'aurais du merger en local, checker que ca marche, là j'ai pushé direct.
