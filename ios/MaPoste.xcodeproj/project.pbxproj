@@ -280,10 +280,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.francoischenebit.MaPoste";
-				PRODUCT_NAME = MaPoste;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fc.maposte";
+				PRODUCT_NAME = maposte;
 				VERSIONING_SYSTEM = "apple-generic";
-				CODE_SIGN_ENTITLEMENTS = MaPoste/MaPoste.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MaPoste/maposte.entitlements;
 			};
 			name = Debug;
 		};
@@ -300,10 +300,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.francoischenebit.MaPoste";
-				PRODUCT_NAME = MaPoste;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fc.maposte";
+				PRODUCT_NAME = maposte;
 				VERSIONING_SYSTEM = "apple-generic";
-				CODE_SIGN_ENTITLEMENTS = MaPoste/MaPoste.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MaPoste/maposte.entitlements;
 			};
 			name = Release;
 		};
@@ -357,7 +357,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				CODE_SIGN_ENTITLEMENTS = MaPoste/MaPoste.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MaPoste/maposte.entitlements;
 			};
 			name = Debug;
 		};
@@ -404,7 +404,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				CODE_SIGN_ENTITLEMENTS = MaPoste/MaPoste.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MaPoste/maposte.entitlements;
 			};
 			name = Release;
 		};
