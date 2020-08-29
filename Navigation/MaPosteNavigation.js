@@ -72,7 +72,7 @@ function CustomDrawerContent(props) {
     <ImageBackground source={require('../assets/drawerBackground.png')} style={{ width:'100%', height:'100%'}}>
     <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
-        <DrawerItem label="Version" onPress={() => alert('Version : master after merge')} />
+        <DrawerItem label="Version" onPress={() => alert('Version : master after merge and clone')} />
     </DrawerContentScrollView>
     </ImageBackground>
   );
