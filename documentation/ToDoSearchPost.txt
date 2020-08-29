@@ -15,6 +15,13 @@ Fait, mais du coup dans l'autre folder, j'ai du faire
 pod deintegrate
 pod install
 
+remarque install complete est
+yarn install
+cd ios 
+pod deintegrate
+pod install
+
+
 je pense qu'il y a croisement des flux dans mon installation. Idéalement, je pourrais repartir d'une install neuve
 Sinon, j'ai ajouté la version dans le navigateur, ce que j'aurais du faire depuis longtemps
 Je ne peux pas committer cette branche, puisque j'ai juste récupéré le zip. A l'origine je voulais juste vérifier que ca marche
