@@ -7,3 +7,6 @@
 7 détail complet de la poste
 8 entrer critère de recherche adresse
 9 géolocaliser l'utilisateur
+
+Au final, reste à merger la branche en cours sur master, et mettre la master 
+dans un autre folder, yarn install et vérifier que tout marche encore. 
